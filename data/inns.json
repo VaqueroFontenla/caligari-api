@@ -1,0 +1,30 @@
+{
+  "name": "A Mina",
+  "city": "Vigo",
+  "address": "Rúa San Vicente, 8",
+  "lat": "42.238",
+  "long": "-8.727",
+  "features": [
+    {
+      "id": 9,
+      "name": "Hay caldo"
+    },
+    {
+      "id": 28,
+      "name": "Cerveza de barril que no sea Cruzcampo o Amstel"
+    },
+    {
+      "id": 39,
+      "name": "Azulejos en algun sitio"
+    },
+    {
+      "id": 45,
+      "name": "Barril en la puerta"
+    },
+    {
+      "id": 47,
+      "name": "Lotería"
+    }
+  ],
+  "rating": 5
+}
