@@ -6,7 +6,7 @@ class FeaturesService {
     this.features = features;
   }
 
-  create(data) {
+  async create(data) {
     const newFeature = {
       id: makeRandomId(),
       ...data,
@@ -15,15 +15,15 @@ class FeaturesService {
     return newFeature;
   }
 
-  find() {
+  async find() {
     return this.features;
   }
 
-  finById(id) {
+  async finById(id) {
     return this.features.find((feature) => feature.id === +id);
   }
 
-  update(id, changes) {
+  async update(id, changes) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
       throw new Error('feature not found');
@@ -33,7 +33,7 @@ class FeaturesService {
     return this.features[index];
   }
 
-  delete(id) {
+  async delete(id) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
       throw new Error('feature not found');

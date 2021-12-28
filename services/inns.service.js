@@ -6,7 +6,7 @@ class InnService {
     this.inns = inns;
   }
 
-  create(data) {
+  async create(data) {
     const newInn = {
       id: makeRandomId(),
       ...data,
@@ -15,15 +15,15 @@ class InnService {
     return newInn;
   }
 
-  find() {
+  async find() {
     return this.inns;
   }
 
-  finById(id) {
+  async finById(id) {
     return this.inns.find((inn) => inn.id === +id);
   }
 
-  update(id, changes) {
+  async update(id, changes) {
     const index = this.inns.findIndex((inn) => inn.id === +id);
     if (index === -1) {
       throw new Error('Inn not found');
@@ -33,7 +33,7 @@ class InnService {
     return this.inns[index];
   }
 
-  delete(id) {
+  async delete(id) {
     const index = this.inns.findIndex((inn) => inn.id === +id);
     if (index === -1) {
       throw new Error('Inn not found');

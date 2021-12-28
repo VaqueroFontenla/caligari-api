@@ -4,33 +4,33 @@ const InnService = require('../services/inns.service');
 const router = express.Router();
 const service = new InnService();
 
-router.get('/', (req, res) => {
-  const inns = service.find();
+router.get('/', async (req, res) => {
+  const inns = await service.find();
   res.json(inns);
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const inn = service.finById(id);
+  const inn = await service.finById(id);
   res.json(inn);
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
-  const newInn = service.create(body);
+  const newInn = await service.create(body);
   res.status(201).json({ message: 'Inn created', data: newInn });
 });
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  const inn = service.update(id, body);
+  const inn = await service.update(id, body);
   res.json(inn);
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  const inn = service.delete(id);
+  const inn = await service.delete(id);
   res.json(inn);
 });
 
