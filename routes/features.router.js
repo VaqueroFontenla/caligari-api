@@ -22,10 +22,14 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  const feature = await service.update(id, body);
-  res.json(feature);
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const feature = await service.update(id, body);
+    res.json(feature);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
 });
 
 router.delete('/:id', async (req, res) => {

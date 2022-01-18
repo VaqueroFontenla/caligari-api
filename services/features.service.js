@@ -26,7 +26,7 @@ class FeaturesService {
   async update(id, changes) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
-      throw new Error('feature not found');
+      throw new Error('Feature not found');
     }
     const feature = this.features[index];
     this.features[index] = { ...feature, ...changes };
@@ -36,7 +36,7 @@ class FeaturesService {
   async delete(id) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
-      throw new Error('feature not found');
+      throw new Error('Feature not found');
     }
     this.features.splice(index, 1);
     return { id };

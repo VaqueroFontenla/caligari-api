@@ -9,10 +9,14 @@ router.get('/', async (req, res) => {
   res.json(inns);
 });
 
-router.get('/:id', async (req, res) => {
-  const { id } = req.params;
-  const inn = await service.finById(id);
-  res.json(inn);
+router.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const inn = await service.finById(id);
+    res.json(inn);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post('/', async (req, res) => {
