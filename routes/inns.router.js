@@ -47,6 +47,22 @@ router.post(
   }
 );
 
+router.put(
+  '/:id',
+  validatorHandler(getInnSchema, 'params'),
+  validatorHandler(updateInnSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const inn = await service.update(id, body);
+      res.status(201).json(inn);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 router.patch(
   '/:id',
   validatorHandler(getInnSchema, 'params'),
