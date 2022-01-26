@@ -1,3 +1,4 @@
+const boom = require('@hapi/boom');
 const features = require('../data/features.json');
 const makeRandomId = require('../utils/makerandomId');
 
@@ -20,13 +21,17 @@ class FeaturesService {
   }
 
   async finById(id) {
-    return this.features.find((feature) => feature.id === +id);
+    const feature = this.features.find((feature) => feature.id === +id);
+    if (!feature) {
+      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
+    }
+    return feature;
   }
 
   async update(id, changes) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
-      throw new Error('Feature not found');
+      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
     }
     const feature = this.features[index];
     this.features[index] = { ...feature, ...changes };
@@ -36,7 +41,7 @@ class FeaturesService {
   async delete(id) {
     const index = this.features.findIndex((feature) => feature.id === +id);
     if (index === -1) {
-      throw new Error('Feature not found');
+      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
     }
     this.features.splice(index, 1);
     return { id };
