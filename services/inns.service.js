@@ -1,9 +1,10 @@
 const boom = require('@hapi/boom');
-const inns = require('../data/inns.json');
+const pool = require('../libs/postgres.pool');
 const makeRandomId = require('../utils/makerandomId');
 class InnService {
   constructor() {
-    this.inns = inns;
+    this.pool = pool;
+    this.pool.on('error', (err) => console.log(err));
   }
 
   async create(data) {
@@ -16,7 +17,9 @@ class InnService {
   }
 
   async find() {
-    return this.inns;
+    const query = 'SELECT * FROM inns';
+    const res = await this.pool.query(query);
+    return res.rows;
   }
 
   async finById(id) {

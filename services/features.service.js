@@ -1,11 +1,11 @@
 const boom = require('@hapi/boom');
-const features = require('../data/features.json');
 const makeRandomId = require('../utils/makerandomId');
-const getConnection = require('../libs/postgres');
+const pool = require('../libs/postgres.pool');
 
 class FeaturesService {
   constructor() {
-    this.features = features;
+    this.pool = pool;
+    this.pool.on('error', (err) => console.log(err));
   }
 
   async create(data) {
@@ -18,8 +18,8 @@ class FeaturesService {
   }
 
   async find() {
-    const client = await getConnection();
-    const res = await client.query('SELECT * FROM features');
+    const query = 'SELECT * FROM features';
+    const res = await this.pool.query(query);
     return res.rows;
   }
 
