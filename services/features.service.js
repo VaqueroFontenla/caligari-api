@@ -1,6 +1,7 @@
 const boom = require('@hapi/boom');
 const features = require('../data/features.json');
 const makeRandomId = require('../utils/makerandomId');
+const getConnection = require('../libs/postgres');
 
 class FeaturesService {
   constructor() {
@@ -17,7 +18,9 @@ class FeaturesService {
   }
 
   async find() {
-    return this.features;
+    const client = await getConnection();
+    const res = await client.query('SELECT * FROM features');
+    return res.rows;
   }
 
   async finById(id) {
