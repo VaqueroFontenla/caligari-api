@@ -1,6 +1,7 @@
 const boom = require('@hapi/boom');
 const makeRandomId = require('../utils/makerandomId');
 const pool = require('../libs/postgres.pool');
+const sequelize = require('../libs/sequelize');
 
 class FeaturesService {
   constructor() {
@@ -19,8 +20,8 @@ class FeaturesService {
 
   async find() {
     const query = 'SELECT * FROM features';
-    const res = await this.pool.query(query);
-    return res.rows;
+    const [data] = await sequelize.query(query);
+    return data;
   }
 
   async finById(id) {

@@ -1,6 +1,7 @@
 const boom = require('@hapi/boom');
 const pool = require('../libs/postgres.pool');
 const makeRandomId = require('../utils/makerandomId');
+const sequelize = require('../libs/sequelize');
 class InnService {
   constructor() {
     this.pool = pool;
@@ -18,8 +19,8 @@ class InnService {
 
   async find() {
     const query = 'SELECT * FROM inns';
-    const res = await this.pool.query(query);
-    return res.rows;
+    const [data] = await sequelize.query(query);
+    return data;
   }
 
   async finById(id) {
