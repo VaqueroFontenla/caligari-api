@@ -1,10 +1,12 @@
 const Joi = require('joi');
 
-const id = Joi.string().uuid();
+const id = Joi.number().integer();
 const name = Joi.string();
+const created_at = Joi.string();
 
-const createFeaureSchema = Joi.object({
+const createFeatureSchema = Joi.object({
   name: name.required(),
+  created_at,
 });
 
 const updateFeaureSchema = Joi.object({
@@ -12,4 +14,5 @@ const updateFeaureSchema = Joi.object({
 });
 
 const getFeatureSchema = Joi.object({ id: id.required() });
-module.exports = { createFeaureSchema, getFeatureSchema, updateFeaureSchema };
+
+module.exports = { createFeatureSchema, getFeatureSchema, updateFeaureSchema };

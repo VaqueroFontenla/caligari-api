@@ -3,8 +3,8 @@ const FeatureService = require('../services/features.service');
 const validatorHandler = require('../middlewares/validator.handler');
 const {
   createFeatureSchema,
-  updateFeaureSchema,
   getFeatureSchema,
+  updateFeaureSchema,
 } = require('../schemas/feature.schema');
 
 const router = express.Router();
@@ -42,7 +42,7 @@ router.post(
       const newFeature = await service.create(body);
       res.status(201).json({ message: 'Feature created', data: newFeature });
     } catch (error) {
-      res.status(404).json({ message: error });
+      res.status(404).json({ message: 'varnvo' });
     }
   }
 );

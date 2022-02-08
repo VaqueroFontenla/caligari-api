@@ -1,7 +1,6 @@
 const boom = require('@hapi/boom');
 const pool = require('../libs/postgres.pool');
-const makeRandomId = require('../utils/makerandomId');
-const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 class InnService {
   constructor() {
     this.pool = pool;
@@ -9,44 +8,31 @@ class InnService {
   }
 
   async create(data) {
-    const newInn = {
-      id: makeRandomId(),
-      ...data,
-    };
-    this.inns.push(newInn);
-    return newInn;
+    const NewInn = await models.Inn.create(data);
+    return NewInn;
   }
 
   async find() {
-    const query = 'SELECT * FROM inns';
-    const [data] = await sequelize.query(query);
-    return data;
+    return await models.Inn.findAll();
   }
 
   async finById(id) {
-    const inn = this.inns.find((inn) => inn.id === +id);
+    const inn = await models.Inn.findByPk(id);
     if (!inn) {
-      throw boom.notFound('Nos hemos encontra este bar Caligari');
+      throw boom.notFound('Nos hemos encontrado este maravilloso bar Caligari');
     }
     return inn;
   }
 
   async update(id, changes) {
-    const index = this.inns.findIndex((inn) => inn.id === +id);
-    if (index === -1) {
-      throw boom.notFound('Nos hemos encontra este bar Caligari');
-    }
-    const inn = this.inns[index];
-    this.inns[index] = { ...inn, ...changes };
-    return this.inns[index];
+    const inn = awaitthis.finById(id);
+    const res = await inn.update(changes);
+    return res;
   }
 
   async delete(id) {
-    const index = this.inns.findIndex((inn) => inn.id === +id);
-    if (index === -1) {
-      throw boom.notFound('Nos hemos encontra este bar Caligari');
-    }
-    this.inns.splice(index, 1);
+    const inn = await this.finById(id);
+    await inn.destroy();
     return { id };
   }
 }

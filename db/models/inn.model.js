@@ -5,7 +5,7 @@ const InnSchema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGEr,
+    type: DataTypes.INTEGER,
   },
   name: {
     allowNull: false,

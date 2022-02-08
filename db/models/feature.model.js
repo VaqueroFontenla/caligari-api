@@ -1,11 +1,11 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const FEATURE_TABLE = 'features';
-const FetureSchema = {
+const FeatureSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGEr,
+    type: DataTypes.INTEGER,
   },
   name: {
     allowNull: false,
@@ -31,4 +31,4 @@ class Feature extends Model {
   }
 }
 
-module.exports = { FEATURE_TABLE, FetureSchema, Feature };
+module.exports = { FEATURE_TABLE, FeatureSchema, Feature };

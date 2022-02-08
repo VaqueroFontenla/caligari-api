@@ -1,7 +1,6 @@
 const boom = require('@hapi/boom');
-const makeRandomId = require('../utils/makerandomId');
 const pool = require('../libs/postgres.pool');
-const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 
 class FeaturesService {
   constructor() {
@@ -10,44 +9,35 @@ class FeaturesService {
   }
 
   async create(data) {
-    const newFeature = {
-      id: makeRandomId(),
-      ...data,
-    };
-    this.features.push(newFeature);
+    const newFeature = await models.Feature.create(data);
+    if (!newFeature) {
+      throw boom.notFound('Nos hemos encontrado esta singularidad Caligaresca');
+    }
     return newFeature;
   }
 
   async find() {
-    const query = 'SELECT * FROM features';
-    const [data] = await sequelize.query(query);
-    return data;
+    return await models.Feature.findAll();
   }
 
   async finById(id) {
-    const feature = this.features.find((feature) => feature.id === +id);
+    const feature = await models.Feature.findByPk(id);
     if (!feature) {
-      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
+      throw boom.notFound('Nos hemos encontrado esta singularidad Caligaresca');
     }
     return feature;
   }
 
   async update(id, changes) {
-    const index = this.features.findIndex((feature) => feature.id === +id);
-    if (index === -1) {
-      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
-    }
-    const feature = this.features[index];
-    this.features[index] = { ...feature, ...changes };
-    return this.features[index];
+    const feature = await this.finById(id);
+    console.log(feature);
+    const res = await feature.update(changes);
+    return res;
   }
 
   async delete(id) {
-    const index = this.features.findIndex((feature) => feature.id === +id);
-    if (index === -1) {
-      throw boom.notFound('Nos hemos encontra esta singularidad Caligaresca');
-    }
-    this.features.splice(index, 1);
+    const feature = await this.finById(id);
+    await feature.destroy();
     return { id };
   }
 }
