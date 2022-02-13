@@ -5,6 +5,7 @@ const {
   logError,
   errorHandler,
   boomErrorHandler,
+  ormErrorHandler,
 } = require('./middlewares/error.handler');
 const routerApi = require('./routes');
 
@@ -17,6 +18,7 @@ app.use(cors());
 routerApi(app);
 
 app.use(logError);
+app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

@@ -11,7 +11,9 @@ class FeaturesService {
   async create(data) {
     const newFeature = await models.Feature.create(data);
     if (!newFeature) {
-      throw boom.notFound('Nos hemos encontrado esta singularidad Caligaresca');
+      throw boom.notFound(
+        'Nos hemos podido crear esta singularidad Caligaresca'
+      );
     }
     return newFeature;
   }
@@ -30,7 +32,6 @@ class FeaturesService {
 
   async update(id, changes) {
     const feature = await this.finById(id);
-    console.log(feature);
     const res = await feature.update(changes);
     return res;
   }

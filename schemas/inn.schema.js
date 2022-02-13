@@ -8,12 +8,8 @@ const description = Joi.string();
 const created_at = Joi.date();
 const lat = Joi.number().precision(4);
 const lon = Joi.number().precision(4);
-const features = Joi.array().items(
-  Joi.object({
-    id: Joi.number(),
-    name: Joi.string(),
-  })
-);
+const features = Joi.array().items(Joi.number());
+const rating = Joi.number().integer();
 
 const createInnSchema = Joi.object({
   name: name.required(),
@@ -22,6 +18,9 @@ const createInnSchema = Joi.object({
   description,
   address,
   created_at,
+  rating,
+  lat,
+  lon,
 });
 
 const updateInnSchema = Joi.object({
@@ -33,6 +32,7 @@ const updateInnSchema = Joi.object({
   lon,
   description,
   created_at,
+  rating,
 });
 
 const getInnSchema = Joi.object({

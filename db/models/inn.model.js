@@ -13,7 +13,7 @@ const InnSchema = {
   },
   description: {
     allowNull: true,
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   address: {
     allowNull: false,
@@ -24,12 +24,17 @@ const InnSchema = {
     type: DataTypes.STRING,
   },
   lat: {
-    allowNull: false,
-    type: DataTypes.DECIMAL,
+    allowNull: true,
+    type: DataTypes.FLOAT,
   },
   lon: {
-    allowNull: false,
-    type: DataTypes.DECIMAL,
+    allowNull: true,
+    type: DataTypes.FLOAT,
+  },
+  features: { allowNull: false, type: DataTypes.ARRAY(DataTypes.INTEGER) },
+  rating: {
+    allowNull: true,
+    type: DataTypes.INTEGER,
   },
   createdAt: {
     allowNull: false,

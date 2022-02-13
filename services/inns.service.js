@@ -25,7 +25,7 @@ class InnService {
   }
 
   async update(id, changes) {
-    const inn = awaitthis.finById(id);
+    const inn = await this.finById(id);
     const res = await inn.update(changes);
     return res;
   }
