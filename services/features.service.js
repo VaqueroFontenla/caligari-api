@@ -1,12 +1,8 @@
 const boom = require('@hapi/boom');
-const pool = require('../libs/postgres.pool');
 const { models } = require('../libs/sequelize');
 
 class FeaturesService {
-  constructor() {
-    this.pool = pool;
-    this.pool.on('error', (err) => console.log(err));
-  }
+  constructor() {}
 
   async create(data) {
     const newFeature = await models.Feature.create(data);

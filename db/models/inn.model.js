@@ -31,7 +31,6 @@ const InnSchema = {
     allowNull: true,
     type: DataTypes.FLOAT,
   },
-  features: { allowNull: false, type: DataTypes.ARRAY(DataTypes.INTEGER) },
   rating: {
     allowNull: true,
     type: DataTypes.INTEGER,
@@ -45,7 +44,14 @@ const InnSchema = {
 };
 
 class Inn extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsToMany(models.Feature, {
+      as: 'features',
+      through: models.InnFeature,
+      foreignKey: 'innId',
+      otherKey: 'featureId',
+    });
+  }
   static config(sequelize) {
     return {
       sequelize,

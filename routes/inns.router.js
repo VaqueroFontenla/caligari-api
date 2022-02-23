@@ -5,6 +5,7 @@ const {
   createInnSchema,
   updateInnSchema,
   getInnSchema,
+  addFeatureSchema,
 } = require('../schemas/inn.schema');
 
 const router = express.Router();
@@ -87,6 +88,20 @@ router.delete(
       const { id } = req.params;
       const inn = await service.delete(id);
       res.status(200).json(inn);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/add-feature',
+  validatorHandler(addFeatureSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newFeature = await service.addFeature(body);
+      res.status(201).json({ message: 'Inn created', data: newFeature });
     } catch (error) {
       next(error);
     }
