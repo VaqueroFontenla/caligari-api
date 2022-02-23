@@ -6,19 +6,24 @@ const {
   updateInnSchema,
   getInnSchema,
   addFeatureSchema,
+  queryInnSchema,
 } = require('../schemas/inn.schema');
 
 const router = express.Router();
 const service = new InnService();
 
-router.get('/', async (req, res) => {
-  try {
-    const inns = await service.find();
-    res.status(200).json(inns);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
+router.get(
+  '/',
+  validatorHandler(queryInnSchema, 'params'),
+  async (req, res) => {
+    try {
+      const inns = await service.find(req.query);
+      res.status(200).json(inns);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
   }
-});
+);
 
 router.get(
   '/:id',

@@ -11,6 +11,8 @@ const lon = Joi.number().precision(4);
 const rating = Joi.number().integer();
 const innId = Joi.number().integer();
 const featureId = Joi.number().integer().min(1);
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
 
 const createInnSchema = Joi.object({
   name: name.required(),
@@ -38,13 +40,17 @@ const getInnSchema = Joi.object({
   id: id.required(),
 });
 
+const queryInnSchema = Joi.object({ limit, offset, city });
+
 const addFeatureSchema = Joi.object({
   innId: innId.required(),
   featureId: featureId.required(),
 });
+
 module.exports = {
   createInnSchema,
   updateInnSchema,
   getInnSchema,
   addFeatureSchema,
+  queryInnSchema,
 };

@@ -13,12 +13,43 @@ class InnService {
     return newFeature;
   }
 
-  async find() {
-    return await models.Inn.findAll({ include: ['features'] });
+  async find(query) {
+    const options = {
+      include: [
+        {
+          association: 'features',
+          attributes: ['id', 'name'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+      where: {},
+    };
+
+    const { limit, offset, city } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+    if (city) {
+      options.where.city = city;
+    }
+    return await models.Inn.findAll(options);
   }
 
   async finById(id) {
-    const inn = await models.Inn.findByPk(id, { include: ['features'] });
+    const inn = await models.Inn.findByPk(id, {
+      include: [
+        {
+          association: 'features',
+          attributes: ['id', 'name'],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
     if (!inn) {
       throw boom.notFound('Nos hemos encontrado este maravilloso bar Caligari');
     }
