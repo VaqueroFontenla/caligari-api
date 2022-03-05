@@ -1,36 +1,6 @@
 [
   {
-    "id": 1,
-    "name": "A Mina",
-    "city": "Vigo",
-    "address": "Rúa San Vicente, 8",
-    "lat": "42.238",
-    "lon": "-8.727",
-    "features": [
-      {
-        "id": 9,
-        "name": "Hay caldo"
-      },
-      {
-        "id": 28,
-        "name": "Cerveza de barril que no sea Cruzcampo o Amstel"
-      },
-      {
-        "id": 39,
-        "name": "Azulejos en algun sitio"
-      },
-      {
-        "id": 45,
-        "name": "Barril en la puerta"
-      },
-      {
-        "id": 47,
-        "name": "Lotería"
-      }
-    ],
-    "rating": 5
-  },
-  {
+    "id": 7,
     "name": "Taberna J. Blanco",
     "description": "Se inauguró en 1988. Su dueño, Joaquín Blanco, decidió montar junto a su mujer, Esperanza, y sus cuñados un localito dedicado a los guisos caseros y a los vinos con denominación de origen. Atentos al corzo estofado, pochas con almejas, rabo de toro y callos a la madrileña. Todo muy familiar y cercano.",
     "address": "C. de Tabernillas, 23",
@@ -38,9 +8,92 @@
     "lat": 40.4102,
     "lon": -3.712,
     "rating": 5,
+    "createdAt": "2022-03-05T11:53:32.937Z",
     "features": [
-      4, 6, 7, 9, 14, 15, 17, 23, 27, 28, 29, 30, 31, 32, 36, 41, 42, 43, 22,
-      47, 48
+      {
+        "id": 4,
+        "name": "Barra derrapante"
+      },
+      {
+        "id": 6,
+        "name": "Tele local"
+      },
+      {
+        "id": 7,
+        "name": "Que puedas dejar las llaves"
+      },
+      {
+        "id": 9,
+        "name": "Máquina de tabaco (antigua de botones redondos)"
+      },
+      {
+        "id": 14,
+        "name": "Vitrina con tapas de los 70's (de la transición)"
+      },
+      {
+        "id": 15,
+        "name": "Cortado en vaso de caña"
+      },
+      {
+        "id": 17,
+        "name": "Fotos de platos combinados"
+      },
+      {
+        "id": 23,
+        "name": "Negocio familiar"
+      },
+      {
+        "id": 27,
+        "name": "Ventanas grandes"
+      },
+      {
+        "id": 28,
+        "name": "Extintor"
+      },
+      {
+        "id": 29,
+        "name": "Cerveza de barril que no sea Cruzcampo o Amstel"
+      },
+      {
+        "id": 30,
+        "name": "Público diverso"
+      },
+      {
+        "id": 31,
+        "name": "Vino de la casa"
+      },
+      {
+        "id": 32,
+        "name": "Barra de maŕmol"
+      },
+      {
+        "id": 36,
+        "name": "No hay leche vegetal"
+      },
+      {
+        "id": 41,
+        "name": "Azulejos en algún sitio"
+      },
+      {
+        "id": 42,
+        "name": "Radio Olé"
+      },
+      {
+        "id": 43,
+        "name": "Servilletero 'Gracias por su visita'"
+      },
+      {
+        "id": 22,
+        "name": "Tapa estrella (branding): gambas a la planca o pincho de tortilla"
+      },
+      {
+        "id": 47,
+        "name": "Foto con famoso"
+      },
+      {
+        "id": 48,
+        "name": "Lotería"
+      }
     ]
   }
 ]
