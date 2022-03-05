@@ -13,6 +13,7 @@ const innId = Joi.number().integer();
 const featureId = Joi.number().integer().min(1);
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
+const features = Joi.array().items(Joi.number().integer());
 
 const createInnSchema = Joi.object({
   name: name.required(),
@@ -23,6 +24,7 @@ const createInnSchema = Joi.object({
   rating,
   lat,
   lon,
+  features: features.required(),
 });
 
 const updateInnSchema = Joi.object({
@@ -34,6 +36,7 @@ const updateInnSchema = Joi.object({
   description,
   created_at,
   rating,
+  features,
 });
 
 const getInnSchema = Joi.object({

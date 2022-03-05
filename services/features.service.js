@@ -33,8 +33,7 @@ class FeaturesService {
   }
 
   async delete(id) {
-    const feature = await this.finById(id);
-    await feature.destroy();
+    await models.Feature.destroy({ where: { id } });
     return { id };
   }
 }

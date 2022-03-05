@@ -4,7 +4,12 @@ class InnService {
   constructor() {}
 
   async create(data) {
+    const { features } = data;
     const NewInn = await models.Inn.create(data);
+    const { id } = NewInn;
+    features.forEach((feature) =>
+      models.InnFeature.create({ innId: id, featureId: feature })
+    );
     return NewInn;
   }
 
@@ -63,8 +68,8 @@ class InnService {
   }
 
   async delete(id) {
-    const inn = await this.finById(id);
-    await inn.destroy();
+    await models.InnFeature.destroy({ where: { innId: id } });
+    await models.Inn.destroy({ where: { id } });
     return { id };
   }
 }
