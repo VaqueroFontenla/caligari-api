@@ -16,7 +16,8 @@ const InnSchema = {
     type: DataTypes.TEXT,
   },
   address: {
-    allowNull: false,
+    allowNull: true,
+    defaultValue: '',
     type: DataTypes.STRING,
   },
   city: {

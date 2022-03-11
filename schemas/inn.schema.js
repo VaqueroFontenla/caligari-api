@@ -4,7 +4,7 @@ const id = Joi.number().integer();
 const name = Joi.string();
 const city = Joi.string();
 const address = Joi.string();
-const description = Joi.string();
+const description = Joi.string().allow('');
 const created_at = Joi.date();
 const lat = Joi.number().precision(4);
 const lon = Joi.number().precision(4);
@@ -21,7 +21,7 @@ const createInnSchema = Joi.object({
   description,
   address,
   created_at,
-  rating,
+  rating: rating.required(),
   lat,
   lon,
   features: features.required(),
