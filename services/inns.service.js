@@ -62,9 +62,15 @@ class InnService {
   }
 
   async update(id, changes) {
+    const { features } = changes;
     const inn = await this.finById(id);
-    const res = await inn.update(changes);
-    return res;
+    const updateInn = await inn.update({
+      ...changes,
+      features: features.forEach((feature) =>
+        models.InnFeature.create({ innId: id, featureId: feature })
+      ),
+    });
+    return updateInn;
   }
 
   async delete(id) {
